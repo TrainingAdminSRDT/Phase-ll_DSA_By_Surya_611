@@ -1,4 +1,7 @@
 # LeetCode DSA Solutions by Akshat Singh Nayal
+# Branch -> CSE ( Cyber Security )
+# Roll no.-> 2301221720003
+# Year -> 4th
 
 A curated collection of Data Structures & Algorithms problems solved on LeetCode — spanning **Easy**, **Medium**, and **Hard** difficulty levels across topics like Arrays, Strings, Trees, Graphs, Dynamic Programming, and more.
 
