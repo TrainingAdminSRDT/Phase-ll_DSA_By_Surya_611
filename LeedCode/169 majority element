@@ -1,0 +1,24 @@
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        int m=0;//majority element
+        int cnt=0;//counter
+        for(int x: nums){//nums means passing array, 
+           if(cnt==0)
+           {
+            m=x;
+            cnt=1;
+           }
+           else{
+            //cnt+=m==x?1:-1;
+            if(m==x){
+                cnt=cnt+1;
+            }
+            else{
+                cnt=cnt-1;
+            }
+            }
+           }
+        return m ;
+    }
+};
