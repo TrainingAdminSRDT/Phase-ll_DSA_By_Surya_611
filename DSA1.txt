@@ -1,0 +1,432 @@
+
+#876
+      class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+
+        while (fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+
+        return slow;
+        
+    }
+};
+
+
+
+#21
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
+        ListNode dummy(0);
+        ListNode* tail = &dummy;
+
+        while (list1 && list2) {
+            if (list1->val <= list2->val) {
+                tail->next = list1;
+                list1 = list1->next;
+            } else {
+                tail->next = list2;
+                list2 = list2->next;
+            }
+            tail = tail->next;
+        }
+
+        tail->next = (list1) ? list1 : list2;
+
+        return dummy.next;
+    }
+};
+
+
+
+#206
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        
+         while (curr != NULL) {
+            ListNode* nextNode = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+
+        return prev;
+        
+    }
+};
+
+
+#141
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+         ListNode *slow = head;
+        ListNode *fast = head;
+
+        while (fast != NULL && fast->next != NULL) {
+            slow = slow->next;
+            fast = fast->next->next;
+
+            if (slow == fast) {
+                return true;
+            }
+        }
+
+        return false;
+        
+    }
+};
+
+
+#160
+class Solution {
+public:
+    ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
+        ListNode *a = headA;
+        ListNode *b = headB;
+
+        while (a != b) {
+            a = (a == NULL) ? headB : a->next;
+            b = (b == NULL) ? headA : b->next;
+        }
+
+        return a;
+    }
+};
+
+
+#709
+class Solution {
+public:
+    string toLowerCase(string s) {
+        for(char&c:s){
+            if(c>='A'&& c<='Z'){
+                c|=32;
+            }
+        }
+        return s;
+        
+        
+    }
+};
+
+
+#125
+class Solution {
+public:
+    bool isPalindrome(string s) {
+         int l = 0, r = s.size() - 1;
+
+        while (l < r) {
+            if (!isalnum(s[l])) { l++; continue; }
+            if (!isalnum(s[r])) { r--; continue; }
+
+            if (tolower(s[l]) != tolower(s[r]))
+                return false;
+
+            l++;
+            r--;
+        }
+        return true;
+
+        
+
+        
+    }
+};
+
+#58
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+       int len = 0;
+        int i = s.size() - 1;
+        while (i >= 0 && s[i] == ' ')
+            i--;
+            while (i >= 0 && s[i] != ' ') {
+            len++;
+            i--;
+        }
+
+        return len;
+
+    }
+};
+
+#242
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.size() != t.size())
+            return false;
+
+        vector<int> count(26, 0);
+
+        for (char c : s)
+            count[c - 'a']++;
+
+        for (char c : t)
+            count[c - 'a']--;
+
+        for (int x : count) {
+            if (x != 0)
+                return false;
+        }
+
+        return true;
+
+        
+    }
+};
+
+#344
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+        int left = 0;
+        int right = s.size() - 1;
+
+        while (left < right) {
+            swap(s[left], s[right]);
+            left++;
+            right--;
+        }
+    }
+};
+
+#56
+class Solution {
+public:
+    vector<vector<int>> merge(vector<vector<int>>& intervals) {
+        sort(intervals.begin(),intervals.end());
+        int st= intervals[0][0],ed=intervals[0][1];
+        vector<vector<int>> ans;
+        for(int i=1;i<intervals.size();++i){
+            if(ed<intervals[i][0]){
+                ans.push_back({st,ed});
+                st=intervals[i][0];
+                ed=intervals[i][1];
+            }
+            else{
+                ed=max(ed,intervals[i][1]);
+            }
+        }
+        ans.push_back({st,ed});
+        return ans;
+            }
+};
+
+#367
+class Solution {
+public:
+    bool isPerfectSquare(int num) {
+        long long left = 1, right = num;
+
+        while (left <= right) {
+            long long mid = left + (right - left) / 2;
+            long long square = mid * mid;
+            if(square==num)
+                            return true;
+            else if (square < num)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+
+        return false;
+
+
+
+        
+        
+    }
+};
+
+#35
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+         int left = 0, right = nums.size() - 1;
+         while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] < target)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+
+        return left; 
+
+    }
+};
+
+#704
+ class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int low = 0, high = nums.size() - 1;
+
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
+
+            if (nums[mid] == target)
+                return mid;
+            else if (nums[mid] < target)
+                low = mid + 1;
+            else
+                high = mid - 1;
+        }
+
+        return -1;
+    
+    }
+};
+
+#2090
+class Solution {
+public:
+    vector<int> getAverages(vector<int>& nums, int k) {
+        int n=nums.size();
+        vector<int> ans(n,-1);
+        long long s=0;
+        for(int i=0;i<n; ++i){
+            s+=nums[i];
+            if(i>=k*2){
+                ans[i-k]=s/(k*2+1);
+                s-=nums[i-k*2];
+            }
+        }
+        return ans;
+        
+    }
+};
+
+#88
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+       int i=m-1;
+       int j=n-1;
+       int k=m+n-1;
+       while(i>=0 && j>=0){
+        if (nums1[i] > nums2[j]) {
+                nums1[k--] = nums1[i--];
+        }
+        else{
+            nums1[k--] = nums2[j--];
+        }
+       }
+       while (j >= 0) {
+            nums1[k--] = nums2[j--];
+            
+        }
+
+       
+     
+    }
+};
+
+#977
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& nums) {
+      for(int i=0;i<nums.size();i++){
+         nums[i]=nums[i]*nums[i];
+
+      } 
+      sort(nums.begin(),nums.end());
+      return nums;
+    }
+};
+
+#283
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int j=0;
+        for (int i=0; i<nums.size();i++){
+            if(nums[i] !=0){
+            swap(nums[i],nums[j]);
+            j++;
+            }
+
+        }
+    
+    }
+};
+
+#1480
+class Solution {
+public:
+    vector<int> runningSum(vector<int>& nums) {
+     for(int i=1; i<nums.size();i++){
+        nums[i]=nums[i]+nums[i-1];
+     } 
+     return nums; 
+    }
+};
+
+#53
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int currSum=nums[0];
+        int maxSum=nums[0];
+        for(int i=1;i<nums.size(); i++){
+            currSum=max(nums[i],currSum+nums[i]);
+            maxSum=max(currSum,maxSum);
+        }
+        return maxSum;
+
+        
+    }
+};
+
+#26
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+       int k=0;
+       for(int x: nums){
+        if(k==0||x!=nums[k-1]){
+            nums[k++]=x;
+        }
+        
+       }
+       return k; 
+    }
+};
+
+#268
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int ans= nums.size();
+        for(int i=0;i < nums.size(); i++){
+            ans = ans ^ (i ^ nums[i]);
+        }
+        return ans;
+    }
+};
+
+#258
+class Solution {
+public:
+    int addDigits(int num) {
+    return(num-1)%9 +1;
+
+        
+    }
+    
+};
