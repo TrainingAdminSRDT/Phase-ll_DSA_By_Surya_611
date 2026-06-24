@@ -1,0 +1,424 @@
+2235.
+class Solution {
+public:
+    int sum(int num1, int num2) {
+      return num1+num2;
+    }
+};
+
+9.
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x < 0) return false;
+
+        int original = x;
+        int rev = 0;
+
+        while (x != 0) {
+            int digit = x % 10;
+            rev = rev * 10 + digit;
+            x /= 10;
+        }
+
+        return original == rev;
+    }
+}
+
+21.
+class Solution {
+    public ListNode mergeTwoLists(ListNode a, ListNode b) {
+        ListNode d = new ListNode(0), c = d;
+        while (a != null && b != null) {
+            if (a.val < b.val) { c.next = a; a = a.next; }
+            else { c.next = b; b = b.next; }
+            c = c.next;
+        }
+        c.next = (a != null) ? a : b;
+        return d.next;
+    }
+}
+
+367.
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        if (num<0) return false;
+        long l =0,r=num;
+        while(l<=r){
+            long mid=l+(r-l)/2;
+            long sq=mid*mid;
+            if(sq==num)return true;
+            if(sq<num)l=mid+1;
+            else r=mid-1;        }
+            return false;
+    }
+}
+
+7.
+class Solution {
+public:
+    int reverse(int x) {
+        int ans=0;
+        while (x){
+            int digit = x%10;
+            if(ans>INT_MAX/10||ans<INT_MIN/10){
+                return 0;
+            }
+            ans=ans*10+digit;
+            x=x/10;
+            }
+            return ans;
+        }
+    };
+
+
+169.
+class Solution {
+    public int majorityElement(int[] nums) {
+        int count = 0, candidate = 0;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+}
+
+26.
+class Solution {
+    public int removeDuplicates(int[] nums) {
+        int i=0;
+    for(int j=1;j<nums.length;j++){
+        if(nums[j]!=nums[i]){
+            nums[i+1]=nums[j];
+            i++;
+        }
+    }
+    return i+1;
+    }
+
+}
+
+1480.
+class Solution {
+    public int[] runningSum(int[] nums) {
+    
+        for(int i=1;i<nums.length;i++){
+        nums[i]=nums[i]+nums[i-1];}
+        return nums;
+    }
+}
+
+283.
+class Solution {
+    public void moveZeroes(int[] nums) {
+        int k=0;
+        for (int i=0;i<nums.length;i++){
+            if(nums[i]!=0){
+                int temp=nums[k];
+                nums[k]=nums[i];
+                nums[i]=temp;
+                k++;
+                
+                
+            }
+        }
+    }
+}
+
+643.
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+       
+      int sum=0;
+      for (int i=0;i<k;i++){
+        sum+=nums[i];
+      }  
+      int maxsum=sum;
+      for(int i=k;i<nums.length;i++){
+        sum=sum+nums[i]-nums[i-k];
+        maxsum=Math.max(maxsum,sum);
+      }
+
+    return(double) maxsum/k;
+        
+    }
+}
+
+2090.
+class Solution {
+    public int[] getAverages(int[] nums, int k) {
+        int n =nums.length;
+        int arr[]=new int [n];long sum=0;
+        Arrays.fill(arr,-1);
+        for(int i=0;i<nums.length;i++){
+            sum+=nums[i];
+            if(i>=k*2){
+                arr[i-k]=(int)(sum/(k*2+1));
+                sum-=nums[i-k*2];
+            }
+        }
+return arr;
+
+    }
+}
+
+704.
+class Solution {
+    public int search(int[] nums, int target) {
+       int low=0;int high=nums.length-1;int ans=-1; 
+       while(low<=high){
+        int mid =low+(high-low)/2;
+        if(nums[mid]==target){
+            return mid;
+        }
+        else if(nums[mid]>target){
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+       }
+       return -1;
+    }
+}
+
+35.
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int low=0;int high=nums.length-1;
+       while(low<=high){
+        int mid =low+(high-low)/2;
+        if(nums[mid]==target){
+            return mid;
+        }
+        else if(nums[mid]>target){
+            high=mid-1;
+        }
+        else{
+            low=mid+1;
+        }
+       
+    }return low;
+}
+}
+
+367.
+class Solution {
+    public boolean isPerfectSquare(int num) {
+        if (num<0) return false;
+        long l =0,r=num;
+        while(l<=r){
+            long mid=l+(r-l)/2;
+            long sq=mid*mid;
+            if(sq==num)return true;
+            if(sq<num)l=mid+1;
+            else r=mid-1;        }
+            return false;
+    }
+}
+
+141.
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;         
+            fast = fast.next.next;    
+
+            if (slow == fast) {       
+                return true;
+            }
+        }
+
+        return false; 
+    }
+}
+    
+876.
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;         
+            fast = fast.next.next;    
+        }
+        return slow;
+    }
+}
+
+206.
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null;   
+        ListNode curr = head;  
+        while (curr != null) {
+            ListNode next = curr.next; 
+            curr.next = prev;          
+            prev = curr;               
+            curr = next;               
+        }
+        return prev; 
+    }
+}
+
+234.
+class Solution {
+    public boolean isPalindrome(ListNode head) {
+        ListNode slow = head, fast = head, prev = null;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        while (slow != null) {
+            ListNode next = slow.next;
+            slow.next = prev;
+            prev = slow;
+            slow = next;
+        }
+        while (prev != null) {
+            if (head.val != prev.val) return false;
+            head = head.next;
+            prev = prev.next;
+        }
+
+        return true;
+    }
+}
+
+104.
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+        int leftDepth=maxDepth(root.left);
+        int rightDepth=maxDepth(root.right);
+        return Math.max(leftDepth, rightDepth) +1;
+    }
+}
+
+100.
+class Solution {
+    public boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+        if (p == null || q == null) return false;
+
+        if (p.val != q.val) return false;
+
+        return isSameTree(p.left, q.left) && isSameTree(p.right, q.right);
+    }
+}
+
+
+101.
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+        return check(root.left, root.right);
+    }
+
+    public boolean check(TreeNode left, TreeNode right) {
+        if (left == null && right == null) return true;
+        if (left == null || right == null) return false;
+
+        if (left.val != right.val) return false;
+
+        return check(left.left, right.right) &&
+               check(left.right, right.left);
+    }
+}
+
+
+53.
+class Solution {
+public int maxSubArray(int[] nums) {
+    int cursum = nums[0];
+    int maxsum = nums[0];
+
+    for (int i = 1; i < nums.length; i++) {
+        cursum = Math.max(nums[i], cursum + nums[i]);
+        maxsum = Math.max(maxsum, cursum);
+    }
+
+    return maxsum;
+}
+}
+
+222.
+class Solution {
+    public int countNodes(TreeNode root) {
+        if (root == null) return 0;
+        return 1 + countNodes(root.left) + countNodes(root.right);
+    }
+}
+
+144.
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        dfs(root, result);
+        return result;
+    }
+
+    private void dfs(TreeNode node, List<Integer> result) {
+        if (node == null) return;
+
+        result.add(node.val);   
+        dfs(node.left, result); 
+        dfs(node.right, result);
+    }
+}
+
+20.
+class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> st = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (c == '(') st.push(')');
+            else if (c == '{') st.push('}');
+            else if (c == '[') st.push(']');
+            else {
+                if (st.isEmpty() || st.pop() != c) return false;
+            }
+        }
+        return st.isEmpty();
+    }
+}
+
+1.
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        for (int i = 0; i < nums.length; i++) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] + nums[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return new int[0];
+    }
+}
+
+21.
+class Solution {
+    public ListNode mergeTwoLists(ListNode a, ListNode b) {
+        ListNode d = new ListNode(0), c = d;
+        while (a != null && b != null) {
+            if (a.val < b.val) { c.next = a; a = a.next; }
+            else { c.next = b; b = b.next; }
+            c = c.next;
+        }
+        c.next = (a != null) ? a : b;
+        return d.next;
+    }
+}
+
+    
